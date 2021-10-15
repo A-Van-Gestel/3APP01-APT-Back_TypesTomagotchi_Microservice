@@ -27,6 +27,17 @@ public class TypeTamagotchi {
         this.typeName = typeName;
     }
 
+    public TypeTamagotchi(String typeName, String description, int maxWeight, int minWeight, int minHealth, int neuroticism, int metabolism, int minHappiness) {
+        this.typeName = typeName;
+        this.description = description;
+        this.maxWeight = maxWeight;
+        this.minWeight = minWeight;
+        this.minHealth = minHealth;
+        this.neuroticism = neuroticism;
+        this.metabolism = metabolism;
+        this.minHappiness = minHappiness;
+    }
+
     public String getTypeName() {
         return typeName;
     }
