@@ -38,6 +38,7 @@ public class TypeTamagotchi {
         this.minHappiness = minHappiness;
     }
 
+
     public String getTypeName() {
         return typeName;
     }

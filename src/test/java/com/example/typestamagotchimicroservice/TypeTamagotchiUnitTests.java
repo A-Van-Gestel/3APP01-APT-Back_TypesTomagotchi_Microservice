@@ -43,9 +43,7 @@ public class TypeTamagotchiUnitTests {
 
     @Test
     public void givenType_whenGetAllTypes_thenReturnJsonTypes() throws Exception { //geeft lijst met alle types terug
-
-
-        given(typeTamagotchiRepository.findTypeTamagotchis()).willReturn(typeList);
+        given(typeTamagotchiRepository.vindAlles()).willReturn(typeList);
 
         mockMvc.perform(get("/types"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -75,20 +73,20 @@ public class TypeTamagotchiUnitTests {
         mockMvc.perform(get("/types/{id}","1")) //commando
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].typeName",is("Slijmie"))) //type 1
-                .andExpect(jsonPath("$[0].description",is("Een slijmerig maar schattig dier")))
-                .andExpect(jsonPath("$[0].maxWeight",is(160)))
-                .andExpect(jsonPath("$[0].minWeight",is(80)))
-                .andExpect(jsonPath("$[0].minHealth",is(50)))
-                .andExpect(jsonPath("$[0].neuroticism",is(32)))
-                .andExpect(jsonPath("$[0].metabolism",is(80)))
-                .andExpect(jsonPath("$[0].minHappiness",is(30)));
+                .andExpect(jsonPath("$.typeName",is("Slijmie"))) //type 1
+                .andExpect(jsonPath("$.description",is("Een slijmerig maar schattig dier")))
+                .andExpect(jsonPath("$.maxWeight",is(160)))
+                .andExpect(jsonPath("$.minWeight",is(80)))
+                .andExpect(jsonPath("$.minHealth",is(50)))
+                .andExpect(jsonPath("$.neuroticism",is(32)))
+                .andExpect(jsonPath("$.metabolism",is(80)))
+                .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
     public void givenType_whenGetTamagotchiByName_theReturnJsonType() throws Exception {
         given(typeTamagotchiRepository.findTypeTamagotchisByTypeNameContaining("Sl")).willReturn(typeList);
 
-        mockMvc.perform(get("/types/{typeName}","Sl")) //commando
+        mockMvc.perform(get("/types/name/{typeName}","Sl")) //commando
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -119,19 +117,19 @@ public class TypeTamagotchiUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].typeName",is("Fluffy"))) //type 1
-                .andExpect(jsonPath("$[0].description",is("Een pluisbol")))
-                .andExpect(jsonPath("$[0].maxWeight",is(160)))
-                .andExpect(jsonPath("$[0].minWeight",is(80)))
-                .andExpect(jsonPath("$[0].minHealth",is(50)))
-                .andExpect(jsonPath("$[0].neuroticism",is(32)))
-                .andExpect(jsonPath("$[0].metabolism",is(80)))
-                .andExpect(jsonPath("$[0].minHappiness",is(30)));
+                .andExpect(jsonPath("$.typeName",is("Fluffy"))) //type 1
+                .andExpect(jsonPath("$.description",is("Een pluisbol")))
+                .andExpect(jsonPath("$.maxWeight",is(160)))
+                .andExpect(jsonPath("$.minWeight",is(80)))
+                .andExpect(jsonPath("$.minHealth",is(50)))
+                .andExpect(jsonPath("$.neuroticism",is(32)))
+                .andExpect(jsonPath("$.metabolism",is(80)))
+                .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
     public void givenType_whenPutType_thenReturnJsonType() throws Exception {
         TypeTamagotchi typePut = new TypeTamagotchi(
-                "Slakkie","Een slak",160,70,60,98,120,40);
+                "Slakkie","Een kleine slak",202,14,70,9999999,110,120);
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Slakkie")).willReturn(type2);
 
@@ -140,14 +138,14 @@ public class TypeTamagotchiUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].typeName",is("Slakkie"))) //type 2
-                .andExpect(jsonPath("$[0].description",is("Een slak")))
-                .andExpect(jsonPath("$[0].maxWeight",is(160)))
-                .andExpect(jsonPath("$[0].minWeight",is(70)))
-                .andExpect(jsonPath("$[0].minHealth",is(60)))
-                .andExpect(jsonPath("$[0].neuroticism",is(98)))
-                .andExpect(jsonPath("$[0].metabolism",is(120)))
-                .andExpect(jsonPath("$[0].minHappiness",is(40)));
+                .andExpect(jsonPath("$.typeName",is("Slakkie"))) //type 2
+                .andExpect(jsonPath("$.description",is("Een kleine slak")))
+                .andExpect(jsonPath("$.maxWeight",is(202)))
+                .andExpect(jsonPath("$.minWeight",is(14)))
+                .andExpect(jsonPath("$.minHealth",is(70)))
+                .andExpect(jsonPath("$.neuroticism",is(9999999)))
+                .andExpect(jsonPath("$.metabolism",is(110)))
+                .andExpect(jsonPath("$.minHappiness",is(120)));
     }
     @Test
     public void givenType_whenDeleteType_thenSatuesOk() throws Exception {
@@ -155,7 +153,7 @@ public class TypeTamagotchiUnitTests {
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Fifi")).willReturn(typeDelete);
 
-        mockMvc.perform(delete("/types/{typeName}","Fifi")
+        mockMvc.perform(delete("/types/name/{typeName}","Fifi")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -164,7 +162,7 @@ public class TypeTamagotchiUnitTests {
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Fifi")).willReturn(null);
 
-        mockMvc.perform(delete("/types/{typeName}","Fifi")
+        mockMvc.perform(delete("/types/name/{typeName}","Fifi")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
