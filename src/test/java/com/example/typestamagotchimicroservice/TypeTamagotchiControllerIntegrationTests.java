@@ -57,7 +57,7 @@ public class TypeTamagotchiControllerIntegrationTests {
 //
 //        typeTamagotchiRepository.deleteAll();
 //    }
-
+//
 //    @Test
 //    public void givenType_whenGetAllTypes_thenReturnJsonTamagotchiTypes() throws Exception { //geeft lijst met alle types terug
 //        mockMvc.perform(get("/types"))
