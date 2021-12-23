@@ -30,33 +30,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class TypeTamagotchiControllerIntegrationTests {
 
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper mapper = new ObjectMapper();
-
-    @Autowired
-    private TypeTamagotchiRepository typeTamagotchiRepository;
-
-    private TypeTamagotchi type1 = new TypeTamagotchi(
-            "Slijmie","Een slijmerig maar schattig dier",160,80,50,32,80,30);
-    private TypeTamagotchi type2 = new TypeTamagotchi(
-            "Slakkie","Een slak",120,70,60,98,120,40);
-
-
-
-    @BeforeEach
-    public void beforeAllTests() {
-        typeTamagotchiRepository.deleteAll();
-        typeTamagotchiRepository.save(type1);
-        typeTamagotchiRepository.save(type2);
-    }
-
-    @AfterEach
-    public void afterAllTests() {
-
-        typeTamagotchiRepository.deleteAll();
-    }
+//    @Autowired
+//    private MockMvc mockMvc;
+//    @Autowired
+//    private ObjectMapper mapper = new ObjectMapper();
+//
+//    @Autowired
+//    private TypeTamagotchiRepository typeTamagotchiRepository;
+//
+//    private TypeTamagotchi type1 = new TypeTamagotchi(
+//            "Slijmie","Een slijmerig maar schattig dier",160,80,50,32,80,30);
+//    private TypeTamagotchi type2 = new TypeTamagotchi(
+//            "Slakkie","Een slak",120,70,60,98,120,40);
+//
+//
+//
+//    @BeforeEach
+//    public void beforeAllTests() {
+//        typeTamagotchiRepository.deleteAll();
+//        typeTamagotchiRepository.save(type1);
+//        typeTamagotchiRepository.save(type2);
+//    }
+//
+//    @AfterEach
+//    public void afterAllTests() {
+//
+//        typeTamagotchiRepository.deleteAll();
+//    }
 
 //    @Test
 //    public void givenType_whenGetAllTypes_thenReturnJsonTamagotchiTypes() throws Exception { //geeft lijst met alle types terug
