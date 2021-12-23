@@ -165,5 +165,5 @@ public class TypeTamagotchiUnitTests {
         mockMvc.perform(delete("/types/name/{typeName}","Fifi")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
-//    }
+    }
 }
