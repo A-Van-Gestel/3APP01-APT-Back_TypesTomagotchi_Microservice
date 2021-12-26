@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TypeTamagotchiRepository extends JpaRepository<TypeTamagotchi, Integer> {
-    @Query(value= "SELECT * FROM TypeTamagotchis ", nativeQuery = true)
+    @Query(value= "SELECT * FROM type_tamagotchi ", nativeQuery = true)
     List<TypeTamagotchi> vindAlles();
     TypeTamagotchi findTypeTamagotchiById(int id);
     TypeTamagotchi findTypeTamagotchiByTypeName(String typeName);

@@ -67,10 +67,10 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$[1].minHappiness",is(40)));
     }
     @Test
-    public void givenType_whenGetTamagotchiById_thenReturnJsonType() throws Exception { //geeft één type terug, gezocht op id
+    public void givenType_whenGetTamagotchiByTypeName_thenReturnJsonType() throws Exception { //geeft één type terug, gezocht op id
 
-        given(typeTamagotchiRepository.findTypeTamagotchiById(1)).willReturn(type1);
-        mockMvc.perform(get("/types/{id}","1")) //commando
+        given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Slijmie")).willReturn(type1);
+        mockMvc.perform(get("/types/{typeName}","Slijmie")) //commando
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.typeName",is("Slijmie"))) //type 1
@@ -83,7 +83,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
-    public void givenType_whenGetTamagotchiByName_theReturnJsonType() throws Exception {
+    public void givenType_whenGetTamagotchisByName_theReturnJsonType() throws Exception {
         given(typeTamagotchiRepository.findTypeTamagotchisByTypeNameContaining("Sl")).willReturn(typeList);
 
         mockMvc.perform(get("/types/name/{typeName}","Sl")) //commando

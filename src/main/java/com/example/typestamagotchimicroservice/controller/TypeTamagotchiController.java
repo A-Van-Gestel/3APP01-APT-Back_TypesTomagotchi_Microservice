@@ -22,11 +22,9 @@ public class TypeTamagotchiController {
         return typeTamagotchiRepository.vindAlles();
     }
 
-    @RequestMapping(value="/types/{id}",
-            method= RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public TypeTamagotchi getTypeById(@PathVariable int id){
-        return typeTamagotchiRepository.findTypeTamagotchiById(id);
+    @GetMapping("/types/{typeName}")
+    public TypeTamagotchi getTypeById(@PathVariable String typeName){
+        return typeTamagotchiRepository.findTypeTamagotchiByTypeName(typeName);
     }
 
     @GetMapping("/types/name/{typeName}")
