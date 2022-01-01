@@ -1,1 +1,7 @@
 # 3APP01-APT-Back_TypesTomagotchi_Microservice
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice&metric=bugs)](https://sonarcloud.io/summary/new_code?id=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice&metric=coverage)](https://sonarcloud.io/summary/new_code?id=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice)
