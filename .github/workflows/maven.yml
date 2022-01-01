@@ -28,4 +28,4 @@ jobs:
       run: docker build -t ${{ secrets.DOCKER_USER }}/types-tamagotchi:latest .
 
     - name: Upload container to Docker Hub with Push
-      run: docker push ${{ secrets.DOCKER_USER }}/types-tamagotchilatest
+      run: docker push ${{ secrets.DOCKER_USER }}/types-tamagotchi:latest
