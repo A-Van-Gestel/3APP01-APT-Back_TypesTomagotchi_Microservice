@@ -73,7 +73,7 @@ spec:
             cpu: 0.2
             memory: "200Mi"
         env:                    # Environment variables supplied to the Pod
-        - name: MARIADB_DB_USERNAME 
+        - name: MARIADB_DB_USERNAME
           value: "root"
         - name: MARIADB_DB_PASSWORD
           value: "1234"
