@@ -71,7 +71,7 @@ spec:
         - name: MARIADB_DB_USERNAME 
           value: "root"
         - name: MARIADB_DB_PASSWORD
-          value: "1234"
+          value: "1234" 
         - name: MARIADB_DB_PASSWORD
           value: "types-tamagotchi-service-mariadb"
 ---
