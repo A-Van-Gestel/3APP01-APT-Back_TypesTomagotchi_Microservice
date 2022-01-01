@@ -30,6 +30,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B verify org.jacoco:jacoco-maven-plugin:prepare-agent org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice
+      run: mvn -B verify org.jacoco:jacoco-maven-plugin:prepare-agent org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=stenneyrinck_3APP01-APT-Back_TypesTomagotchi_Microservice 
     - name: Upload container to Docker Hub with Push
       run: docker push ${{ secrets.DOCKER_USER }}/types-tamagotchi:latest
