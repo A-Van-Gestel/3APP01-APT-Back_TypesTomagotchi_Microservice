@@ -1,33 +1,34 @@
 apiVersion: v1                    # API version
 kind: Service                     # Type of kubernetes resource 
 metadata:
-  name: types-tamagotchi-service-mariadb   # Name of the service
+  name: type-tamagotchi-service-mariadb   # Name of the service
   labels:                         # Labels that will be applied to the service
-    app: types-tamagotchi-service
+    app: type-tamagotchi-service
 spec:
   ports:
     - port: 3306
-  selector:                       # Selects any Pod with labels `app=types-tamagotchi-service,tier=mariadb`
-    app: types-tamagotchi-service
+  selector:                       # Selects any Pod with labels `app=type-tamagotchi-service,tier=mariadb`
+    app: type-tamagotchi-service
     tier: mariadb
   clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment                    # Type of the kubernetes resource
 metadata:
-  name: types-tamagotchi-service-mariadb-deployment           # Name of the deployment
+  name: type-tamagotchi-service-mariadb-deployment           # Name of the deployment
   labels:                           # Labels applied to this deployment 
-    app: types-tamagotchi-service
+    app: type-tamagotchi-service
 spec:
   selector:
     matchLabels:                    # This deployment applies to the Pods matching the specified labels
-      app: types-tamagotchi-service
+      app: type-tamagotchi-service
       tier: mariadb
   strategy:
     type: Recreate
   template:                         # Template for the Pods in this deployment
     metadata:
-      labels:types-tamagotchi-service
+      labels:                       # Labels to be applied to the Pods in this deployment
+        app: type-tamagotchi-service
         tier: mariadb
     spec:                           # The spec for the containers that will be run inside the Pods in this deployment
       containers:
@@ -39,26 +40,30 @@ spec:
         ports:
         - containerPort: 3306       # The port that the container exposes       
           name: mariadb
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "200Mi"
 ---
 apiVersion: apps/v1           # API version
 kind: Deployment              # Type of kubernetes resource
 metadata:
-  name: types-tamagotchi-service-deployment    # Name of the deployment
+  name: type-tamagotchi-service-server-deployment    # Name of the deployment
   labels:                     # Labels that will be applied to this deployment
-    app: types-tamagotchi-service
+    app: type-tamagotchi-service-server
 spec:
   replicas: 1                 # No. of replicas/pods to run in this deployment
   selector:
-    matchLabels:              # The deployment applies to any pods mayching the specified labels
-      app: types-tamagotchi-service-server
+    matchLabels:              # The deployment applies to any pods matching the specified labels
+      app: type-tamagotchi-service-server
   template:                   # Template for creating the pods in this deployment
     metadata:
       labels:                 # Labels that will be applied to each Pod in this deployment
-        app: types-tamagotchi-service-server
+        app: type-tamagotchi-service-server
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
-      - name: types-tamagotchi-service-server
-        image: stenneyrinck/types-tamagotchi-service-ex
+      - name: type-tamagotchi-service-server
+        image: stenneyrinck/types-tamagotchi
         imagePullPolicy: Always
         ports:
           - name: http
@@ -71,20 +76,20 @@ spec:
         - name: MARIADB_DB_USERNAME 
           value: "root"
         - name: MARIADB_DB_PASSWORD
-          value: "1234" 
-        - name: MARIADB_DB_PASSWORD
-          value: "types-tamagotchi-service-mariadb"
+          value: "1234"
+        - name: MARIADB_DB_HOST
+          value: "type-tamagotchi-service-mariadb"
 ---
 apiVersion: v1                      # API version
 kind: Service                       # Type of the kubernetes resource
 metadata:                     
-  name: types-tamagotchi-service-server    # Name of the service
+  name: type-tamagotchi-service-server    # Name of the service
   labels:                           # Labels that will be applied to this service
-    app: types-tamagotchi-serviceserver
+    app: type-tamagotchi-service-server
 spec:                         
   type: NodePort                    # The service will be exposed by opening a Port on each node and proxying it. Allowing connections from outside the cluster 
   selector:
-    app: types-tamagotchi-service-server   # The service exposes Pods with label `app=types-tamagotchi-service-server`
+    app: type-tamagotchi-service-server   # The service exposes Pods with label `app=type-tamagotchi-service-server`
   ports:                            # Forward incoming connections on port 8080 to the target port 8051
   - name: http
     port: 8051
