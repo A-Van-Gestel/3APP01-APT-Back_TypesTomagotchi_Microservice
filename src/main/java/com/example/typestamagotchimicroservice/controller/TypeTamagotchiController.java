@@ -58,7 +58,7 @@ public class TypeTamagotchiController {
     }
 
     @DeleteMapping("/types/name/{typename}")
-    public ResponseEntity deleteTamgotchiType(@PathVariable String typename) {
+    public ResponseEntity<Object> deleteTamagotchiType(@PathVariable String typename) {
         TypeTamagotchi typeTamagotchi = typeTamagotchiRepository.findTypeTamagotchiByTypeName(typename);
         if (typeTamagotchi!=null) {
             typeTamagotchiRepository.delete(typeTamagotchi);

@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TypeTamagotchiControllerIntegrationTests {
+class TypeTamagotchiControllerIntegrationTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -52,20 +52,20 @@ public class TypeTamagotchiControllerIntegrationTests {
     private final TypeTamagotchi type2 = new TypeTamagotchi("Slakkie","Een slak",120,70,60,98,120,40);
 
     @BeforeEach
-    public void beforeAllTests() {
+    private void beforeAllTests() {
         //typeTamagotchiRepository.deleteAll();
         typeTamagotchiRepository.save(type1);
         typeTamagotchiRepository.save(type2);
     }
 
     @AfterEach
-    public void afterAllTests() {
+    private void afterAllTests() {
 
         typeTamagotchiRepository.deleteAll();
     }
 
     @Test
-    public void givenType_whenGetAllTypes_thenReturnJsonTamagotchiTypes() throws Exception { //geeft lijst met alle types terug
+    void givenType_whenGetAllTypes_thenReturnJsonTamagotchiTypes() throws Exception { //geeft lijst met alle types terug
         mockMvc.perform(get("/types"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -89,7 +89,7 @@ public class TypeTamagotchiControllerIntegrationTests {
     }
 
     @Test
-    public void givenType_whenGetTamagotchiByTypeName_thenReturnJsonTamagotchiType() throws Exception {
+    void givenType_whenGetTamagotchiByTypeName_thenReturnJsonTamagotchiType() throws Exception {
         mockMvc.perform(get("/types/{typeName}","Slijmie")) //commando
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -104,7 +104,7 @@ public class TypeTamagotchiControllerIntegrationTests {
 
     }
     @Test
-    public void givenType_whenGetTamagotchisByName_theReturnJsonType() throws Exception {
+    void givenType_whenGetTamagotchisByName_theReturnJsonType() throws Exception {
         mockMvc.perform(get("/types/name/{typeName}","Sl")) //commando
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -127,7 +127,7 @@ public class TypeTamagotchiControllerIntegrationTests {
                 .andExpect(jsonPath("$[1].minHappiness",is(40)));
     }
     @Test
-    public void whenPostType_thenReturnJsonType() throws Exception {
+    void whenPostType_thenReturnJsonType() throws Exception {
         TypeTamagotchi typePost = new TypeTamagotchi(
                 "Fluffy","Een pluisbol",160,80,50,32,80,30);
 
@@ -146,7 +146,7 @@ public class TypeTamagotchiControllerIntegrationTests {
                 .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
-    public void givenType_whenPutType_thenReturnJsonType() throws Exception {
+    void givenType_whenPutType_thenReturnJsonType() throws Exception {
         TypeTamagotchi typePut = new TypeTamagotchi(
                 "Slakkie","Een slak",160,70,60,98,120,40);
 
@@ -166,18 +166,18 @@ public class TypeTamagotchiControllerIntegrationTests {
                 .andExpect(jsonPath("$.minHappiness",is(40)));
     }
     @Test
-    public void givenType_whenDeleteType_thenSatuesOk() throws Exception {
+    void givenType_whenDeleteType_thenSatuesOk() throws Exception {
         mockMvc.perform(delete("/types/name/{typeName}","Slakkie")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
-    public void givenType_whenDeleteType_thenStatusNotfound() throws Exception {
+    void givenType_whenDeleteType_thenStatusNotfound() throws Exception {
         mockMvc.perform(delete("/types/name/{typeName}","Slakkie"));
         mockMvc.perform(delete("/types/name/{typeName}","Slakkie")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
-    
+
 
 }

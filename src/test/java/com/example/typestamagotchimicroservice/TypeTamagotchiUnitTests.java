@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TypeTamagotchiUnitTests {
+class TypeTamagotchiUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -43,7 +43,7 @@ public class TypeTamagotchiUnitTests {
     List<TypeTamagotchi> typeList = Arrays.asList(type1, type2);;
 
     @Test
-    public void givenType_whenGetAllTypes_thenReturnJsonTypes() throws Exception { //geeft lijst met alle types terug
+    void givenType_whenGetAllTypes_thenReturnJsonTypes() throws Exception { //geeft lijst met alle types terug
         given(typeTamagotchiRepository.vindAlles()).willReturn(typeList);
 
         mockMvc.perform(get("/types"))
@@ -68,7 +68,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$[1].minHappiness",is(40)));
     }
     @Test
-    public void givenType_whenGetTamagotchiByTypeName_thenReturnJsonType() throws Exception { //geeft één type terug, gezocht op id
+    void givenType_whenGetTamagotchiByTypeName_thenReturnJsonType() throws Exception { //geeft één type terug, gezocht op id
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Slijmie")).willReturn(type1);
         mockMvc.perform(get("/types/{typeName}","Slijmie")) //commando
@@ -84,7 +84,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
-    public void givenType_whenGetTamagotchisByName_theReturnJsonType() throws Exception {
+    void givenType_whenGetTamagotchisByName_theReturnJsonType() throws Exception {
         given(typeTamagotchiRepository.findTypeTamagotchisByTypeNameContaining("Sl")).willReturn(typeList);
 
         mockMvc.perform(get("/types/name/{typeName}","Sl")) //commando
@@ -109,7 +109,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$[1].minHappiness",is(40)));
     }
     @Test
-    public void whenPostType_thenReturnJsonType() throws Exception {
+    void whenPostType_thenReturnJsonType() throws Exception {
         TypeTamagotchi typePost = new TypeTamagotchi(
                 "Fluffy","Een pluisbol",160,80,50,32,80,30);
 
@@ -128,7 +128,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$.minHappiness",is(30)));
     }
     @Test
-    public void givenType_whenPutType_thenReturnJsonType() throws Exception {
+    void givenType_whenPutType_thenReturnJsonType() throws Exception {
         TypeTamagotchi typePut = new TypeTamagotchi(
                 "Slakkie","Een kleine slak",202,14,70,9999999,110,120);
 
@@ -149,7 +149,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(jsonPath("$.minHappiness",is(120)));
     }
     @Test
-    public void givenType_whenDeleteType_thenSatuesOk() throws Exception {
+    void givenType_whenDeleteType_thenSatuesOk() throws Exception {
         TypeTamagotchi typeDelete = new TypeTamagotchi("Fifi","Een hond",160,80,50,32,80,30);
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Fifi")).willReturn(typeDelete);
@@ -159,7 +159,7 @@ public class TypeTamagotchiUnitTests {
                 .andExpect(status().isOk());
     }
     @Test
-    public void givenType_whenDeleteType_thenStatusNotfound() throws Exception {
+    void givenType_whenDeleteType_thenStatusNotfound() throws Exception {
 
         given(typeTamagotchiRepository.findTypeTamagotchiByTypeName("Fifi")).willReturn(null);
 
