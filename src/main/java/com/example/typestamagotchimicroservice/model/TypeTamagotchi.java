@@ -1,8 +1,13 @@
 package com.example.typestamagotchimicroservice.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 public class TypeTamagotchi {
 
@@ -31,78 +36,6 @@ public class TypeTamagotchi {
         this.minHealth = minHealth;
         this.neuroticism = neuroticism;
         this.metabolism = metabolism;
-        this.minHappiness = minHappiness;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getMaxWeight() {
-        return maxWeight;
-    }
-
-    public void setMaxWeight(int maxWeight) {
-        this.maxWeight = maxWeight;
-    }
-
-    public int getMinWeight() {
-        return minWeight;
-    }
-
-    public void setMinWeight(int minWeight) {
-        this.minWeight = minWeight;
-    }
-
-    public int getMinHealth() {
-        return minHealth;
-    }
-
-    public void setMinHealth(int minHealth) {
-        this.minHealth = minHealth;
-    }
-
-    public int getNeuroticism() {
-        return neuroticism;
-    }
-
-    public void setNeuroticism(int neuroticism) {
-        this.neuroticism = neuroticism;
-    }
-
-    public int getMetabolism() {
-        return metabolism;
-    }
-
-    public void setMetabolism(int metabolism) {
-        this.metabolism = metabolism;
-    }
-
-    public int getMinHappiness() {
-        return minHappiness;
-    }
-
-    public void setMinHappiness(int minHappiness) {
         this.minHappiness = minHappiness;
     }
 }
