@@ -68,9 +68,4 @@ public class TypeTamagotchiController {
         }
     }
 
-//    public TypeTamagotchi mapTypeTamagotchDTO_To_TypeTamgotchi(TypeTamagotchiDTO typeTamagotchiDTO) {
-//
-//        return  typeTamagotchi;
-//    }
-
 }
