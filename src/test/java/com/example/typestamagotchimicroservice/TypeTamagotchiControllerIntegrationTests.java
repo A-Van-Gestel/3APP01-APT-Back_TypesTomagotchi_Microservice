@@ -178,12 +178,6 @@ public class TypeTamagotchiControllerIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
-
-
-    @Test
-    void main() {
-        TypesTamagotchiMicroserviceApplication.main(new String[] {});
-        Assertions.assertTrue(true); // fake assertion so that Sonar Cloud won't complain
-    }
+    
 
 }
